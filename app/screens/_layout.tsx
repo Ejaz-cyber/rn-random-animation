@@ -45,6 +45,12 @@ export default function ScreensLayout() {
             headerLeft: () => <BackButton />,
           }}
         />
+        <Stack.Screen
+          name="StoriesScroll"
+          options={{
+            headerShown: false,
+          }}
+        />
         <Stack.Screen name="Autocomplete" />
       </Stack>
       <StatusBar style="auto" />

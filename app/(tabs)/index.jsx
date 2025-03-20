@@ -2,30 +2,12 @@ import { Image, StyleSheet, Platform, Button } from "react-native";
 
 import ParallaxScrollView from "@/components/ParallaxScrollView";
 import { useRouter } from "expo-router";
-
+import { paths } from "../../constants";
 export default function HomeScreen() {
   const router = useRouter();
 
-  const handlePress = (navId) => {
-    // router.push("Profile")
-
-    console.log(navId);
-    switch (navId) {
-      case 1:
-        router.push("screens/Animation1");
-        break;
-      case 2:
-        router.push("screens/Animation2");
-        break;
-      case 3:
-        router.push("screens/Timer");
-        break;
-      case 4:
-        router.push("screens/Autocomplete");
-        break;
-      // case 5: router.push("screens/InfiniteImageScroll");
-      // break;
-    }
+  const handlePress = (name) => {
+    router.push(`/screens/${name}`);
   };
 
   return (
@@ -38,10 +20,13 @@ export default function HomeScreen() {
         />
       }
     >
-      <Button onPress={() => handlePress(1)} title="Animation1" />
-      <Button onPress={() => handlePress(2)} title="Animation2" />
-      <Button onPress={() => handlePress(3)} title="Timer Animation" />
-      <Button onPress={() => handlePress(4)} title="Autocomplete" />
+      {paths.map((item) => (
+        <Button
+          key={item.id}
+          onPress={() => handlePress(item.name)}
+          title={item.title}
+        />
+      ))}
     </ParallaxScrollView>
   );
 }
